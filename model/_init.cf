@@ -46,7 +46,7 @@ typedef Server as SSHServer(services = [ssh::ssh_server])
 implementation sshServer for SSHServer:
     pkg = std::Package(host = host, name = "openssh-server", state = "installed")
     svc = std::Service(host = host, name = "sshd", state = "running", onboot = true, requires = [pkg, cfg])
-    cfg = std::ConfigFile(host = host, path = "/etc/ssh/sshd_config", content = template("ssh/sshd_config.tmpl"))
+    cfg = std::ConfigFile(host = host, path = "/etc/ssh/sshd_config", content = std::template("ssh/sshd_config.tmpl"))
 end
 
 implement SSHServer using sshServer
@@ -66,10 +66,10 @@ std::Host host [1] -- [0:] SSHUser ssh_users
 index SSHUser(host, home_dir)
 
 implementation sshUser for SSHUser:
-    assert({ssh_keys | count == 2}, "Should be 2 elements {{ self.host.name }}")
+    std::assert({ssh_keys | std::count == 2}, "Should be 2 elements {{ self.host.name }}")
     dir = std::Directory(host = self.host, path = "{{ home_dir }}/.ssh", mode = 700, owner = user, group = group)
     file = std::File(host = host, mode = 600, owner = user, requires = dir, group = group,
-        content = template("ssh/authorized_keys"), path = "{{ home_dir }}/.ssh/authorized_keys")
+        content = std::template("ssh/authorized_keys"), path = "{{ home_dir }}/.ssh/authorized_keys")
 end
 
 implement SSHUser using sshUser
