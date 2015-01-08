@@ -1,8 +1,7 @@
-name: ssh
-version: 0.1.1
-source: git@github.com:bartv/imp-ssh
-license: Apache 2.0
 author: Bart Vanbrabant <bart.vanbrabant@cs.kuleuven.be>
-requires:
-    ip: git@github.com:bartv/imp-ip, ">= 0.1"
-    std: git@github.com:bartv/imp-std, ">= 0.1"
+license: Apache 2.0
+name: ssh
+requires: {ip: 'git@github.com:bartv/imp-ip, ">= 0.1"', std: 'git@github.com:bartv/imp-std,
+    ">= 0.1"'}
+source: git@github.com:bartv/imp-ssh
+version: 0.1.2
