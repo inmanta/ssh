@@ -20,16 +20,18 @@ entity Key:
     """
         A public ssh-key used to access virtual machine
 
-        :param public_key The actual public key that needs to be deployed
-        :param name An identifier for the public key
+        :param public_key: The actual public key that needs to be deployed
+        :param name: An identifier for the public key
+        :param command: The command that can be executed with this public key
+        :param options: SSH options associated with this public key
     """
     string public_key
     string name
+    string command=""
+    string options=""
 end
 
 implement Key using std::none
-
-Key public_key [1] -- [0:] vm::Host vm
 
 entity SSHServer extends ip::services::Server:
     """

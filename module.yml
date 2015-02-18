@@ -5,4 +5,4 @@ requires:
     ip: git@github.com:impera-io/ip, ">= 0.1"
     std: git@github.com:impera-io/std, ">= 0.1"
 source: git@github.com:impera-io/ssh
-version: 0.1.3
+version: 0.1.4
