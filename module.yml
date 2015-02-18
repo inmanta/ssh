@@ -1,8 +1,8 @@
 author: Bart Vanbrabant <bart@impera.io>
 license: Apache 2.0
 name: ssh
+source: git@git.impera.io:modules/ssh
+version: 0.1.5
 requires:
-    ip: git@github.com:impera-io/ip, ">= 0.1"
-    std: git@github.com:impera-io/std, ">= 0.1"
-source: git@github.com:impera-io/ssh
-version: 0.1.4
+    ip: git@git.impera.io:modules/ip, ">= 0.1"
+    std: git@git.impera.io:modules/std, ">= 0.1"
