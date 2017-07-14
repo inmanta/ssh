@@ -1,7 +1,7 @@
 author: Inmanta <code@inmanta.com>
 license: Apache 2.0
 name: ssh
-version: '0.3'
+version: '0.3.1.dev1500020833'
 requires:
 - ip
 - std
