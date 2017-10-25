@@ -35,24 +35,21 @@ end
 
 implement Key using std::none
 
-entity SSHServer extends ip::services::Server:
+entity Server extends ip::services::Server:
     """
         A ssh server
     """
 end
 
-ssh_range = ip::Port(low = 22)
-ssh_server = ip::DstService(proto = "tcp", dst_range = ssh_range)
+implementation sshServer for Server:
+    self.services = ip::Service(proto="tcp", dst_range=ip::Port(low=22))
 
-typedef Server as SSHServer(services = [ssh::ssh_server])
-
-implementation sshServer for SSHServer:
     pkg = std::Package(host = host, name = "openssh-server", state = "installed")
     svc = std::Service(host = host, name = "sshd", state = "running", onboot = true, requires = [pkg, cfg])
     cfg = std::ConfigFile(host = host, path = "/etc/ssh/sshd_config", content = std::template("ssh/sshd_config.tmpl"))
 end
 
-implement SSHServer using sshServer
+implement Server using sshServer
 
 entity SSHUser:
     """
