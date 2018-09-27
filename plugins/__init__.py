@@ -8,7 +8,7 @@ def get_or_create_key(storage, name):
     priv_key = os.path.join(storage, name)
     pub_key = os.path.join(storage, name + ".pub")
     if not os.path.exists(priv_key):
-        subprocess.check_output(["ssh-keygen", "-t", "rsa", "-b", "4096", "-N", "", "-f", priv_key])
+        subprocess.check_output(["ssh-keygen", "-t", "rsa", "-b", "4096", "-N", "", "-C", name, "-f", priv_key])
 
     with open(priv_key, "r") as fd:
         priv = fd.read()
