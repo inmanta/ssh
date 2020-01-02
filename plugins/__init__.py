@@ -1,14 +1,28 @@
 import os
 import subprocess
 
-from inmanta.plugins import plugin, Context
+from inmanta.plugins import Context, plugin
 
 
 def get_or_create_key(storage, name):
     priv_key = os.path.join(storage, name)
     pub_key = os.path.join(storage, name + ".pub")
     if not os.path.exists(priv_key):
-        subprocess.check_output(["ssh-keygen", "-t", "rsa", "-b", "4096", "-N", "", "-C", name, "-f", priv_key])
+        subprocess.check_output(
+            [
+                "ssh-keygen",
+                "-t",
+                "rsa",
+                "-b",
+                "4096",
+                "-N",
+                "",
+                "-C",
+                name,
+                "-f",
+                priv_key,
+            ]
+        )
 
     with open(priv_key, "r") as fd:
         priv = fd.read()
@@ -30,7 +44,7 @@ def get_private_key(context: Context, name: "string") -> "string":
 
 
 @plugin
-def  get_public_key(context: Context, name: "string") -> "string":
+def get_public_key(context: Context, name: "string") -> "string":
     """
         See get_private_key
     """
