@@ -36,8 +36,8 @@ def get_or_create_key(storage, name):
 @plugin
 def get_private_key(context: Context, name: "string") -> "string":
     """
-        Create or return if it already exists a key with the given name. The
-        private key is returned.
+    Create or return if it already exists a key with the given name. The
+    private key is returned.
     """
     priv, pub = get_or_create_key(context.get_data_dir(), name)
     return priv
@@ -46,7 +46,7 @@ def get_private_key(context: Context, name: "string") -> "string":
 @plugin
 def get_public_key(context: Context, name: "string") -> "string":
     """
-        See get_private_key
+    See get_private_key
     """
     priv, pub = get_or_create_key(context.get_data_dir(), name)
     return pub
