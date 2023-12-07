@@ -1,5 +1,8 @@
 # Changelog
 
+## v1.0.1 - ?
+
+
 ## v1.0.0 - 2023-12-07
 
 - Remove the model to configure an ssh server on a host. This configuration was highly outdated.
