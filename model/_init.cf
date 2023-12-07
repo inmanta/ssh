@@ -15,8 +15,6 @@
 
     Contact: code@inmanta.com
 """
-import ip
-import ip::services
 
 entity Key:
     """
@@ -34,22 +32,6 @@ entity Key:
 end
 
 implement Key using std::none
-
-entity Server extends ip::services::Server:
-    """
-        A ssh server
-    """
-end
-
-implementation sshServer for Server:
-    self.services = ip::Service(proto="tcp", dst_range=ip::Port(low=22))
-
-    pkg = std::Package(host=host, name="openssh-server", state="installed")
-    svc = std::Service(host=host, name="sshd", state="running", onboot=true, requires=[pkg, cfg])
-    cfg = std::ConfigFile(host=host, path="/etc/ssh/sshd_config", content=std::template("ssh/sshd_config.tmpl"))
-end
-
-implement Server using sshServer
 
 entity SSHUser:
     """
@@ -79,4 +61,3 @@ implementation sshUser for SSHUser:
 end
 
 implement SSHUser using sshUser
-
