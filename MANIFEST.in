@@ -1,0 +1,5 @@
+include inmanta_plugins/ssh/setup.cfg
+include inmanta_plugins/ssh/py.typed
+recursive-include inmanta_plugins/ssh/model *.cf
+graft inmanta_plugins/ssh/files
+graft inmanta_plugins/ssh/templates

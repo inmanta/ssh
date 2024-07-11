@@ -1,5 +1,5 @@
 """
-    Copyright 2020 Inmanta
+    Copyright 2024 Inmanta
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -15,6 +15,7 @@
 
     Contact: code@inmanta.com
 """
+import fs
 
 entity Key:
     """
@@ -48,8 +49,8 @@ SSHUser.host [1] -- std::Host
 index SSHUser(host, home_dir)
 
 implementation sshUser for SSHUser:
-    dir = std::Directory(host=self.host, path="{{ home_dir }}/.ssh", mode=700, owner=user, group=group)
-    file = std::File(
+    dir = fs::Directory(host=self.host, path="{{ home_dir }}/.ssh", mode=700, owner=user, group=group)
+    file = fs::File(
         host=host,
         mode=600,
         owner=user,
